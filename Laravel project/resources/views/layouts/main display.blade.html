@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset="utf-8">
+    <title>ララベル自動販売機</title>
+    <link href='../../../practice/css/reset.css' rel="stylesheet">
+    <link href='../../../practice/css/app.css' rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+<h1>商品一覧画面</h1>
+</header>
+
+<main>
+
+<label for="name">検索フォーム</label>
+<input type="text" id="new-register" name="new-register" required minlength="1" maxlength="8" size="10">
+<select name="makerName">
+<option value="Coca-Cola">コカ・コーラ</option>
+<option value="KIRIN">キリン</option>
+<option value="cheerio">チェリオ</option>
+</select>
+<input class="makerName-search" type="button" value="検索">
+<input class="new-register" type="button" value="新規">
+
+
+
+<h2>商品情報</h2>
+<table width="50%"  height="20px">
+    <tr>
+        <th>ID</th>
+        <th>商品画像</th>
+        <th>商品名</th>
+        <th>価格</th>
+        <th>在庫数</th>
+        <th>メーカー名</th>
+        <!--詳細ボタンと削除ボタンを作成必須
+             <th><input class="detail" type="button" value="詳細"></th>
+        <th><input class="delete" type="button" value="削除"></th> -->
+    </tr>
+    <!-- jsで追加設定 -->
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+
+</main>
+
+<footer>
+    <h2>自動販売機動作プログラム</h2>
+</footer>
+</body>
+
+</html>

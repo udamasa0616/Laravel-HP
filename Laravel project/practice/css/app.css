@@ -1,0 +1,29 @@
+body {
+    width:100%;  
+}
+
+.header {
+    background-color:aqua;
+    margin:0 auto;
+    font-size: 14px;
+}
+
+
+
+footer {
+    background-color: blue;
+    font-size: 10px;
+    color: white;
+}
+
+/* 検索フォーム */
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
