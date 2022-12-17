@@ -20,12 +20,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/main', 'ProductController@productMainView');
+Route::get('/main', 'ProductController@productMainView')->name('main');
 
 // Route::get('/product', 'ProductController@productView');
 
-Route::get('/info', 'ProductController@productInfoView');
+Route::get('/info', 'ProductController@productInfoView')->name('info');
 
-Route::get('/register', 'ProductController@productRegisterView');
+Route::get('/register', 'ProductController@productRegisterView')->name('register');
 
-Route::get('/sales', 'ProductController@productSalesView');
+Route::get('/sales', 'ProductController@productSalesView')->name('sales');
+
+Route::post('/register', 'ProductController@productRegisterView');

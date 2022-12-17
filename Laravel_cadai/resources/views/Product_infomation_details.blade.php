@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>ララベル自動販売機</title>
-    <link href='../../../practice/css/reset.css' rel="stylesheet">
-    <link href='../../../practice/css/app.css' rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/appp.css') }}">
 </head>
 
 <body>
@@ -22,7 +23,6 @@
             <thead>
                 <table>
                     <tr class="color-main">
-
                         <th>商品情報ID</th>
                         <th>商品名</th>
                         <th>メーカー</th>
