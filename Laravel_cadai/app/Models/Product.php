@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Products extends Model
+class Product extends Model
 {
     // テーブルからデータを取得
     public function getAll()
