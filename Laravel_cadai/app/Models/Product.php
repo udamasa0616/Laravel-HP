@@ -22,8 +22,14 @@ class Products extends Model
                 'img_path',
                 'company_name'
             )
-
+            ->leftjoin(
+                'companies',
+                'companies.id',
+                '=',
+                'products.company_id'
+            )
             ->get();
+
         return $products;
     }
 }
