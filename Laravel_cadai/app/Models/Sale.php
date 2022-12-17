@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ class Sale extends Model
     // テーブルからデータを取得
     public function getAll()
     {
-        $sales = DB::table($this->table)
+        $sales = DB::table($this->sales)
             ->select(
                 'user_name',
                 'email',
