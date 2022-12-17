@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>ララベル自動販売機</title>
-    <!-- css -->
-    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/appp.css') }}">
+    <link href='../../../practice/css/reset.css' rel="stylesheet">
+    <link href='../../../practice/css/app.css' rel="stylesheet">
 </head>
 
 <body>
@@ -23,6 +22,7 @@
             <thead>
                 <table>
                     <tr class="color-main">
+
                         <th>商品情報ID</th>
                         <th>商品名</th>
                         <th>メーカー</th>
@@ -34,15 +34,15 @@
             </thead>
 
             <tbody>
-                @foreach ($results as $result)
+                @foreach ($products as $product)
                 <tr>
-                    <th>{{ $result-> products.id}}</th>
-                    <th>{{ $result->img_path}}</th>
-                    <th>{{ $result->product_name}}</th>
-                    <th>{{ $result->price}</th>
-                    <th>{{ $result->stock}}</th>
-                    <th>{{ $result->company_name}}</th>
-                    <th>{{ $result->comment}}</th>
+                    <th>{{ $product-> products.id}}</th>
+                    <th>{{ $product->img_path}}</th>
+                    <th>{{ $product->product_name}}</th>
+                    <th>{{ $product->price}</th>
+                    <th>{{ $product->stock}}</th>
+                    <th>{{ $product->company_name}}</th>
+                    <th>{{ $product->comment}}</th>
                 </tr>
                 @endforeach
             </tbody>

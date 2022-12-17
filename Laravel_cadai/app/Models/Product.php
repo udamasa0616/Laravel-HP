@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Product extends Model
+class Products extends Model
 {
     // テーブルからデータを取得
     public function getAll()
@@ -22,12 +22,7 @@ class Product extends Model
                 'img_path',
                 'company_name'
             )
-            ->leftjoin(
-                'companies',
-                'companies.id',
-                '=',
-                'products.company_id'
-            )
+
             ->get();
         return $products;
     }

@@ -29,5 +29,3 @@ Route::get('/info', 'ProductController@productInfoView')->name('info');
 Route::get('/register', 'ProductController@productRegisterView')->name('register');
 
 Route::get('/sales', 'ProductController@productSalesView')->name('sales');
-
-Route::post('/register', 'ProductController@productRegisterView');
