@@ -26,8 +26,8 @@ Route::get('/main', 'ProductController@productMainView')->name('main');
 
 Route::get('/info', 'ProductController@productInfoView')->name('info');
 
-Route::get('/register', 'ProductController@productRegisterView')->name('register');
-
 Route::get('/sales', 'ProductController@productSalesView')->name('sales');
 
+// 入力
+Route::get('/register', 'ProductController@productRegisterView')->name('register');
 Route::post('/regist', 'ProductController@productRegistView')->name('regist');

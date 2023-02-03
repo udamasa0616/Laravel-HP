@@ -30,19 +30,20 @@
                             <th>商品画像</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('main') }}">
+                    <form action="{{ route('main') }}" method='post'>
                         @csrf
+
                     <tbody>
                         
                         <tr>
-                            <th><input type="text" id="new-register" name="new-register" required minlength="1" maxlength="8" size="10"></th>
+                            <th><input value="{{ old('product_name') }}" type="text" id="new-register" name="product_name" required minlength="1" maxlength="8" size="10"></th>
                             @if($errors->has('product_name'))
-                        <p>{{ $errors->first('product_name') }}</p>
-                    @endif
+                                <p>{{ $errors->first('product_name') }}</p>
+                            @endif
                             <th>
                                 
                                 <select name="makerName">
-                                    <option value="" selected disabled>選択してください</option>
+                                    <option value="select" selected disabled>選択してください</option>
                                     <option value="Coca-Cola">コカ・コーラ</option>
                                     <option value="KIRIN">キリン</option>
                                     <option value="cheerio">チェリオ</option>
@@ -52,37 +53,41 @@
                                 </select>
 
                             <th>
-                                <input type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
-                                @if($errors->has('price'))
-                        <p>{{ $errors->first('price') }}</p>
-                    @endif
+                                <input value="{{ old('price') }}" type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
+                                    @if($errors->has('price'))
+                                        <p>{{ $errors->first('price') }}</p>
+                                    @endif
                             </th>
 
                             <th>
-                                <input type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
-                            @if($errors->has('stock'))
-                        <p>{{ $errors->first('stock') }}</p>
-                    @endif
+                                <input value="{{ old('stock') }}" type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
+                                    @if($errors->has('stock'))
+                                        <p>{{ $errors->first('stock') }}</p>
+                                    @endif
                             </th>
 
                             <th>
-                                <textarea name="text" id="comment"></textarea>
-                            @if($errors->has('comment'))
-                        <p>{{ $errors->first('comment') }}</p>
-                    @endif
+                                <textarea value="{{ old('comment') }}" name="text" id="comment"></textarea>
+                                    @if($errors->has('comment'))
+                                        <p>{{ $errors->first('comment') }}</p>
+                                    @endif
                             </th>
 
                             <th>
-                                <input class="file" type="file">
-                            @if($errors->has('file'))
-                        <p>{{ $errors->first('file') }}</p>
-                    @endif
+                                <input value="{{ old('file') }}" class="file" type="file">
+                                    @if($errors->has('file'))
+                                        <p>{{ $errors->first('file') }}</p>
+                                    @endif
                             </th>
                         </tr>
                     </tbody>
 
                 </table>
-                <button class="makerName-search" type="button">登録</button>
+                    
+                        <button class="makerName-search" type="button">
+                            <a href="{{ route('main') }}">登録</a>
+                        </button>
+                    
             </form>
             
 

@@ -30,43 +30,39 @@ class ProductController extends Controller
     public function productInfoView()
     {
         $products = new Product();
-        $result = $products->getAll();
+        $result   = $products->getAll();
         return view('Product_information_details', ['result' => $result]);
     }
 
     public function productRegisterView()
     {
         $products = new Product();
-        $result = $products->getAll();
+        $result   = $products->getAll();
         return view('Product_Register_display', ['result' => $result]);
     }
 
     public function productSalesView()
     {
         $products = new Product();
-        $result = $products->getAll();
+        $result   = $products->getAll();
         return view('Product_information_edited_image', ['result' => $result]);
     }
 
-// 入力フォーム
-    public function productRegistView(ArticleRequest $request){
-    // トランザクション開始
-        DB::beginTransaction();
+    // 入力フォーム
+    public function productRegistView(Request $request)
+    {
+        // 登録処理
+        DB::table('products')->insert([
+            'company_id'   => $request->makerName,
+            'product_name' => $request->product_name,
+            'price'        => $request->price,
+            'stock'        => $request->stock,
+            'comment'      => $request->comment,
+            'img_path'     => $request->file,
+        ]);
 
-    try {
-        // 登録処理呼び出し
-        $model = new getAll();
-        $model -> registgetAll($request);
-        DB::commit();
-    } catch (\Exception $e) {
-        DB::rollback();
-        return back();
+
+        // 処理が完了したらregistにリダイレクト
+        return redirect(route('main'));
     }
-    // 処理が完了したらregistにリダイレクト
-    return redirect(route('main'));
 }
-
-
-
-
-    

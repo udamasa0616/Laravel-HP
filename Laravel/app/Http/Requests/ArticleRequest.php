@@ -74,7 +74,7 @@ class ArticleRequest extends FormRequest
 
             // 画像    バリエーション
             'file.required'            => ':attributeを選択してください',
-            'title.max'                => ':attributeは:max字以内で入力してください。',
+            'title.max'                => ':attributeは:max字以内で入力してください。'
         ];
     }
 }
