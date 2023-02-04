@@ -30,26 +30,26 @@
                             <th>商品画像</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('main') }}" method='post'>
+                    <form action="{{ route('register') }}" method='post'>
                         @csrf
 
                     <tbody>
                         
                         <tr>
-                            <th><input value="{{ old('product_name') }}" type="text" id="new-register" name="product_name" required minlength="1" maxlength="8" size="10"></th>
-                            @if($errors->has('product_name'))
-                                <p>{{ $errors->first('product_name') }}</p>
-                            @endif
+                            <th>
+                                <input value="{{ old('product_name') }}" type="text" id="new-register" name="product_name" required minlength="1" maxlength="8" size="10"></th>
+                                    @if($errors->has('product_name'))
+                                        <p>{{ $errors->first('product_name') }}</p>
+                                @endif
                             <th>
                                 
                                 <select name="makerName">
                                     <option value="select" selected disabled>選択してください</option>
-                                    <option value="Coca-Cola">コカ・コーラ</option>
-                                    <option value="KIRIN">キリン</option>
-                                    <option value="cheerio">チェリオ</option>
-                                    <option value="georgia">Georgia</option>
-                                    <option value="sanngaria">サンガリア</option>
-                                    <option value="kobeya">神戸屋</option>
+                                    <option type="text" value="1" @if(1 === (int)old('makerName')) selected @endif >コカ・コーラ</option>
+                                    <option type="text" value="2" @if(2 === (int)old('makerName')) selected @endif >チェリオ</option>
+                                    <option type="text" value="3" @if(3 === (int)old('makerName')) selected @endif >Georgia</option>
+                                    <option type="text" value="4" @if(4 === (int)old('makerName')) selected @endif >サンガリア</option>
+                                    <option type="text" value="5" @if(5 === (int)old('makerName')) selected @endif >神戸屋</option>
                                 </select>
 
                             <th>
@@ -83,10 +83,8 @@
                     </tbody>
 
                 </table>
-                    
-                        <button class="makerName-search" type="button">
-                            <a href="{{ route('main') }}">登録</a>
-                        </button>
+
+                    <input type="submit" class="makerName-search" value="登録" >
                     
             </form>
             

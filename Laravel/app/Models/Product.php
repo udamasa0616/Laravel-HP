@@ -34,14 +34,17 @@ class Product extends Model
 
         return $products;
     }
+
+    // データ入力
     public function registgetAll($data)
     {
         DB::table('Products')->insert([
             'product_name' => $data->product_name,
+            'company_id'   => $data->makerName,
             'price'   => $data->price,
             'stock'   => $data->stock,
             'comment' => $data->comment,
-            'file'    => $data->file,
+            'img_path'    => $data->file,
         ]);
     }
 }

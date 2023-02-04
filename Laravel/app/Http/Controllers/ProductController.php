@@ -58,11 +58,12 @@ class ProductController extends Controller
             'price'        => $request->price,
             'stock'        => $request->stock,
             'comment'      => $request->comment,
-            'img_path'     => $request->file,
+            'img_path'     => $request->file
+            dd($request->makerName);
         ]);
-
+        
 
         // 処理が完了したらregistにリダイレクト
-        return redirect(route('main'));
+        return redirect(route('/main'));
     }
 }
