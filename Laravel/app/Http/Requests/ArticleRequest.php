@@ -13,7 +13,7 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true; //false → true 変更
     }
 
     /**
@@ -24,11 +24,12 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_name' => 'required | string | alpha_num |  max:255',
+            'product_name' => 'required |  max:255',
+            'company_id' => 'required',
             'price'   => 'required | numeric | digits_between:2,3 |	alpha_num',
             'stock'   => 'required | numeric | digits_between:1,3 | alpha_num',
-            'comment' => 'required | string | alpha_num |  max:255',
-            'file'    => 'required'
+            'comment' => 'required |  max:255',
+            'img_path'    => 'required'
         ];
     }
 
@@ -39,7 +40,7 @@ class ArticleRequest extends FormRequest
             'price'   => '価格',
             'stock'   => '在庫数',
             'comment' => 'コメント',
-            'file'    => '画像'
+            'img_path' => '画像'
         ];
     }
 
@@ -48,33 +49,33 @@ class ArticleRequest extends FormRequest
      *
      * @return array
      */
+
     public function messages()
     {
         return [
             // 商品名 バリエーション
-            'new_register.required'    => ':attributesは必須項目です',
-            'new_register.max'         => ':attributeは:max字以内で入力してください。',
+            'product_name.required'    => ':attributeは必須項目です',
+            'product_name.max'         => ':attributeは:max字以内で入力してください。',
 
             // 価格     バリエーション
-            'price.required'           => ':attributesは必須項目です',
-            'price.numeric'            => ':attributesに数値を入力してください',
-            'price.digits_between:2,3' => ':attributesは999までの数値を入力してください',
-            'price.alpha_num'          => ':attributesで入力してください',
+            'price.required'           => ':attributeは必須項目です',
+            'price.numeric'            => ':attributeに数値を入力してください',
+            'price.digits_between:2,3' => ':attributeは999までの数値を入力してください',
+            'price.alpha_num'          => ':attributeで入力してください',
 
             // 在庫数   バリエーション
-            'stock.required'           => ':attributesは必須項目です',
-            'stock.numeric'            => ':attributesに数値を入力してください',
-            'stock.digits_between:2,3' => ':attributesに999より小さくしてください',
-            'stock.alpha_num'          => ':attributesで入力してください',
+            'stock.required'           => ':attributeは必須項目です',
+            'stock.numeric'            => ':attributeに数値を入力してください',
+            'stock.digits_between:2,3' => ':attributeに999より小さくしてください',
+            'stock.alpha_num'          => ':attributeで入力してください',
 
             // コメント バリエーション
-            'comment.required'         => ':attributesは必須項目です',
-            'comment.alpha_num'        => ':attributesで入力してください',
+            'comment.required'         => ':attributeは必須項目です',
+            'comment.alpha_num'        => ':attributeで入力してください',
             'comment.max'              => ':attributeは:max字以内で入力してください。',
 
             // 画像    バリエーション
-            'file.required'            => ':attributeを選択してください',
-            'title.max'                => ':attributeは:max字以内で入力してください。'
+            'img_path.required'            => ':attributeを選択してください',
         ];
     }
 }

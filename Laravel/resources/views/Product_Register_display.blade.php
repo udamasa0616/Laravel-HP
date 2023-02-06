@@ -30,7 +30,7 @@
                             <th>商品画像</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('register') }}" method='post'>
+                    <form action="{{ route('post') }}" method="post">
                         @csrf
 
                     <tbody>

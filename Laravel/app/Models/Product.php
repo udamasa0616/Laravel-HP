@@ -36,7 +36,7 @@ class Product extends Model
     }
 
     // データ入力
-    public function registgetAll($data)
+    public function registerArticle($data)
     {
         DB::table('Products')->insert([
             'product_name' => $data->product_name,
