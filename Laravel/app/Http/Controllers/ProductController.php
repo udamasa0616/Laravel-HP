@@ -76,6 +76,26 @@ class ProductController extends Controller
         return view('main_display')->with($hash);
     }
 
+    public function productPostView(ArticleRequest $request)
+    {
+        $uploader = new Product();
+        $uploader->username = $request->username;
+        $uploader->save();
+
+        // レコードを挿入したときのIDを取得
+        $lastInsertedId = $uploader->id;
+
+        // ディレクトリを作成
+        if (!file_exists(public_path() . "/img/" . $lastInsertedId)) {
+            mkdir(public_path() . "/img/" . $lastInsertedId, 0777);
+        }
+
+        // 一時保存から本番の格納場所へ移動
+        rename(public_path() . $request->img_path, public_path() . "/img/" . $lastInsertedId . "/thum." . pathinfo($request->img_path, PATHINFO_EXTENSION));
+
+        return view('uploader.finish');
+    }
+
     // public function productPostView(ArticleRequest $request)
     // {
     //     // 商品をデータベースに登録
