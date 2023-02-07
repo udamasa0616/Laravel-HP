@@ -68,7 +68,7 @@
                         <th>{{ $product->product_name }}</th>
                         <th>{{ $product->price }}</th>
                         <th>{{ $product->stock }}</th>
-                        <th>{{ $product->company_name }}</th>
+                        <th>{{ $product->company_id }}</th>
                         <th>{{ $product->comment }}</th>
                         <th><a href="{{ route('info') }}">編集</a></th>
                         <th></th>

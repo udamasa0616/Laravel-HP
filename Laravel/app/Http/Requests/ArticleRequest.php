@@ -29,7 +29,7 @@ class ArticleRequest extends FormRequest
             'price'   => 'required | numeric | digits_between:2,3 |	alpha_num',
             'stock'   => 'required | numeric | digits_between:1,3 | alpha_num',
             'comment' => 'required |  max:255',
-            'img_path'    => 'required'
+            'img_path'    => 'required|image|mimes:jpeg,png,jpg,gif|max:1024|dimensions:max_width=300,ratio=1/1'
         ];
     }
 
@@ -37,6 +37,7 @@ class ArticleRequest extends FormRequest
     {
         return [
             'product_name' => '商品名',
+            'company_id' => 'メーカー名',
             'price'   => '価格',
             'stock'   => '在庫数',
             'comment' => 'コメント',
@@ -58,6 +59,9 @@ class ArticleRequest extends FormRequest
             'product_name.max'         => ':attributeは:max字以内で入力してください。',
 
             // 価格     バリエーション
+            'company_id.required'           => ':attributeは必須項目です',
+
+            // 価格     バリエーション
             'price.required'           => ':attributeは必須項目です',
             'price.numeric'            => ':attributeに数値を入力してください',
             'price.digits_between:2,3' => ':attributeは999までの数値を入力してください',
@@ -75,7 +79,11 @@ class ArticleRequest extends FormRequest
             'comment.max'              => ':attributeは:max字以内で入力してください。',
 
             // 画像    バリエーション
-            'img_path.required'            => ':attributeを選択してください',
+            'img_path.required'        => ':attributeを選択してください',
+            "img_path.image" => "指定されたファイルが画像ではありません。",
+            "img_path.mines" => "指定された拡張子（PNG/JPG/GIF）ではありません。",
+            "img_path.max" => "１Ｍを超えています。",
+            "img_path.dimensions" => "画像の比率は1:1で横は最大300pxです。",
         ];
     }
 }

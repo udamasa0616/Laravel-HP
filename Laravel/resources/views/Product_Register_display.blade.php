@@ -30,7 +30,7 @@
                             <th>商品画像</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('post') }}" method="post">
+                    <form action="{{ route('post') }}" method="post" enctype='multipart/form-data'>
                         @csrf
 
                     <tbody>
@@ -67,14 +67,14 @@
                             </th>
 
                             <th>
-                                <textarea value="{{ old('comment') }}" name="text" id="comment"></textarea>
+                                <textarea name="comment" id="comment">{{ old('comment') }}</textarea>
                                     @if($errors->has('comment'))
                                         <p>{{ $errors->first('comment') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <input value="{{ old('file') }}" class="file" type="file">
+                                <input value="{{ old('img_path') }}" class="file" type="file">
                                     @if($errors->has('file'))
                                         <p>{{ $errors->first('file') }}</p>
                                     @endif

@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
+    protected $fillable = ['product_name', 'company_id', 'price', 'stock', 'comment',  'img_path'];
 
     // テーブルからデータを取得
     public function getAll()
     {
-
         $products = DB::table('Products') //DB名
             // ->(クエリビルダ) 途中で内容の順番書き換え必要
             ->select(
@@ -33,18 +33,5 @@ class Product extends Model
             ->get();
 
         return $products;
-    }
-
-    // データ入力
-    public function registerArticle($data)
-    {
-        DB::table('Products')->insert([
-            'product_name' => $data->product_name,
-            'company_id'   => $data->makerName,
-            'price'   => $data->price,
-            'stock'   => $data->stock,
-            'comment' => $data->comment,
-            'img_path'    => $data->file,
-        ]);
     }
 }
