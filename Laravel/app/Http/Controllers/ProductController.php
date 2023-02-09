@@ -50,6 +50,37 @@ class ProductController extends Controller
 
     // POST
 
+
+    public function productPostView(ArticleRequest $request)
+    {
+        // トランザクション開始
+        DB::beginTransaction();
+
+        try {
+            // 登録処理呼び出し
+            $model = new Product();
+            $model->registerArticle($request);
+            dd($model);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back();
+        }
+
+        // 処理が完了したらregisterにリダイレクト
+        return redirect(route('/register'));
+
+
+        //     // 商品をデータベースに登録
+        //     // Product::create([
+        //     //     'product_name' => $request->product_name,
+        //     //     'company_id' => $request->makerName,
+        //     //     'price'   => $request->price,
+        //     //     'stock'   => $request->stock,
+        //     //     'comment' => $request->comment,
+        //     //     'img_path'    => $request->img_path
+        //     // ]);
+    }
     public function confirm(\App\Http\Requests\ArticleRequest $request)
     {
         // モデルへ指示
