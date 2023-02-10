@@ -29,7 +29,7 @@ class ArticleRequest extends FormRequest
             'price'   => 'required | numeric | digits_between:2,3 |	alpha_num',
             'stock'   => 'required | numeric | digits_between:1,3 | alpha_num',
             'comment' => 'required |  max:255',
-            'img_path'    => 'required|image|mimes:jpeg,png,jpg,gif|max:1024|dimensions:max_width=300,ratio=1/1'
+            'img_path'    => 'required|image|mimes:jpeg,png,jpg,gif'
         ];
     }
 

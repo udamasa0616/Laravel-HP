@@ -30,7 +30,7 @@
                             <th>商品画像</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('post') }}" method="post" enctype='multipart/form-data'>
+                    <form action="{{ route('register') }}" method="post" enctype='multipart/form-data'>
                         @csrf
 
                     <tbody>
@@ -74,9 +74,9 @@
                             </th>
 
                             <th>
-                                <input value="{{ old('img_path') }}" class="file" type="file">
-                                    @if($errors->has('file'))
-                                        <p>{{ $errors->first('file') }}</p>
+                                <input name='img_path' value="{{ old('img_path') }}" class="img_path" type="file">
+                                    @if($errors->has('img_path'))
+                                        <p>{{ $errors->first('img_path') }}</p>
                                     @endif
                             </th>
                         </tr>
@@ -84,7 +84,7 @@
 
                 </table>
 
-                    <input type="submit" class="makerName-search" value="登録" >
+                    <input type="submit" class="makerName-search" id="" value="登録" >
                     
             </form>
             

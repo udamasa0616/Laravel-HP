@@ -34,4 +34,17 @@ class Product extends Model
 
         return $products;
     }
+
+    // Post
+    public function registerArticle($request)
+    {
+        DB::table('Products')->insert([
+            'product_name' => $request->product_name,
+            'company_id'   => $request->makerName,
+            'price'        => $request->price,
+            'stock'        => $request->stock,
+            'comment'      => $request->comment,
+            'img_path'     => $request->img_path
+        ]);
+    }
 }

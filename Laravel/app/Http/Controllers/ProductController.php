@@ -60,72 +60,34 @@ class ProductController extends Controller
             // 登録処理呼び出し
             $model = new Product();
             $model->registerArticle($request);
-            dd($model);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             return back();
         }
 
-        // 処理が完了したらregisterにリダイレクト
-        return redirect(route('/register'));
+        // 処理が完了したらregistにリダイレクト
+        return redirect(route('register'));
+        // $post_data      = $request->except('img_path');
+        // $image_file     = $request->file('img_path');
 
+        // $temp_path      = $image_file->store('public/temp');
+        // $read_temp_path = str_replace('public/', 'storage/', $temp_path); //追加
+        // $product_name   = $post_data(['product_name', 'company_id', 'price', 'stock', 'comment', 'img_path']);
 
-        //     // 商品をデータベースに登録
-        //     // Product::create([
-        //     //     'product_name' => $request->product_name,
-        //     //     'company_id' => $request->makerName,
-        //     //     'price'   => $request->price,
-        //     //     'stock'   => $request->stock,
-        //     //     'comment' => $request->comment,
-        //     //     'img_path'    => $request->img_path
-        //     // ]);
-    }
-    public function confirm(\App\Http\Requests\ArticleRequest $request)
-    {
-        // モデルへ指示
-        $product_name = $request->product_name;
-        $company_id = $request->company_id;
-        $price = $request->price;
-        $stock = $request->stock;
-        $comment = $request->comment;
+        // $data = array(
+        //     'product_name' => $product_name,
+        //     'company_id'   => $product_name,
+        //     'price'        => $product_name,
+        //     'stock'        => $product_name,
+        //     'comment'      => $product_name,
+        //     'img_path'     => $product_name,
+        // );
+        // $request->session()->put('data', $data);
 
-        $img_path = uniqid(rand()) . "." . $request->file('img_path')->guessExtension(); // TMPファイル名
-        $request->file('img_path')->move(public_path() . "/img/tmp", $img_path);
-        $thum = "/img/tmp/" . $img_path;
-
-        $hash = array(
-            'product_name' => $product_name,
-            'company_id' => $company_id,
-            'price' => $price,
-            'stock' => $stock,
-            'comment' => $comment,
-            'img_path' => $thum,
-
-        );
-
-        return view('main_display')->with($hash);
+        // return view('/register', compact('data'));
     }
 
-    public function productPostView(ArticleRequest $request)
-    {
-        $uploader = new Product();
-        $uploader->username = $request->username;
-        $uploader->save();
-
-        // レコードを挿入したときのIDを取得
-        $lastInsertedId = $uploader->id;
-
-        // ディレクトリを作成
-        if (!file_exists(public_path() . "/img/" . $lastInsertedId)) {
-            mkdir(public_path() . "/img/" . $lastInsertedId, 0777);
-        }
-
-        // 一時保存から本番の格納場所へ移動
-        rename(public_path() . $request->img_path, public_path() . "/img/" . $lastInsertedId . "/thum." . pathinfo($request->img_path, PATHINFO_EXTENSION));
-
-        return view('uploader.finish');
-    }
 
     // public function productPostView(ArticleRequest $request)
     // {
