@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('price'); //価格
             $table->integer('stock'); //在庫数
             $table->text('comment'); //コメント
-            $table->longText('img_path'); //画像
+            $table->string('img_path'); //画像
             $table->timestamps();
         });
     }

@@ -64,7 +64,7 @@
                     @foreach ($result as $product)
                     <tr>
                         <th>{{ $product->products_id }}</th>
-                        <th>{{ $data ?? ''['read_temp_path'] }}</th>
+                        <th><img src="{{ asset($image->img_path) }}"></th>
                         <th>{{ $product->product_name }}</th>
                         <th>{{ $product->price }}</th>
                         <th>{{ $product->stock }}</th>

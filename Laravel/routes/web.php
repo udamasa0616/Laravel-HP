@@ -32,3 +32,5 @@ Route::get('/sales', 'ProductController@productSalesView')->name('sales');
 Route::get('/register', 'ProductController@productRegisterView')->name('register');
 // データ受け取り
 Route::post('/register', 'ProductController@productPostView')->name('post');
+
+// 

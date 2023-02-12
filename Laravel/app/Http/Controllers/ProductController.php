@@ -51,23 +51,23 @@ class ProductController extends Controller
     // POST
 
 
-    public function productPostView(ArticleRequest $request)
+    public function productPostView(Request $request)
     {
         // トランザクション開始
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-        try {
-            // 登録処理呼び出し
-            $model = new Product();
-            $model->registerArticle($request);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            return back();
-        }
+        // try {
+        //     // 登録処理呼び出し
+        //     $model = new Product();
+        //     $model->registerArticle($request);
+        //     DB::commit();
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        //     return back();
+        // }
 
-        // 処理が完了したらregistにリダイレクト
-        return redirect(route('register'));
+        //  処理が完了したらregisterにリダイレクト
+        //  return redirect(route('register'));
         // $post_data      = $request->except('img_path');
         // $image_file     = $request->file('img_path');
 
@@ -86,7 +86,45 @@ class ProductController extends Controller
         // $request->session()->put('data', $data);
 
         // return view('/register', compact('data'));
+
+        // ディレクトリ名
+        $photo = 'file_photos';
+
+        // アップロードされたファイル名を取得
+        $file_name = $request->file('img_path')->getClientOriginalName();
+
+        // file_photosディレクトリに画像を保存
+        $request->file('img_path')->store('public/' . $photo . $file_name);
+
+        // ファイル情報をDBに保存
+        $image = new Product();
+        $image->product_name = $file_name;
+        $image->img_path = 'storage/' . $photo . '/' . $file_name;
+        $image->save();
+
+        // トランザクション開始
+        DB::beginTransaction();
+
+        try {
+            // 登録処理呼び出し
+            $model = new Product();
+            $model->registerArticle($request);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back();
+        }
+
+
+        // $image->company_id = $file_name;
+        // $image->price = $file_name;
+        // $image->stock = $file_name;
+        // $image->comment = $file_name;
+
+
+        return redirect('/register');
     }
+
 
 
     // public function productPostView(ArticleRequest $request)

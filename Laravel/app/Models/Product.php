@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
+    // Post
     protected $fillable = ['product_name', 'company_id', 'price', 'stock', 'comment',  'img_path'];
 
     // テーブルからデータを取得
@@ -36,6 +37,7 @@ class Product extends Model
     }
 
     // Post
+
     public function registerArticle($request)
     {
         DB::table('Products')->insert([
