@@ -44,12 +44,12 @@
                             <th>
                                 
                                 <select name="makerName">
-                                    <option value="select" selected disabled>選択してください</option>
-                                    <option type="text" value="1" @if(1 === (int)old('makerName')) selected @endif >コカ・コーラ</option>
-                                    <option type="text" value="2" @if(2 === (int)old('makerName')) selected @endif >チェリオ</option>
-                                    <option type="text" value="3" @if(3 === (int)old('makerName')) selected @endif >Georgia</option>
-                                    <option type="text" value="4" @if(4 === (int)old('makerName')) selected @endif >サンガリア</option>
-                                    <option type="text" value="5" @if(5 === (int)old('makerName')) selected @endif >神戸屋</option>
+                                    <option  selected='disabled'>選択してください</option>
+                                    <option  value="1" @if(1 === (int)old('makerName')) selected @endif >コカ・コーラ</option>
+                                    <option  value="2" @if(2 === (int)old('makerName')) selected @endif >チェリオ</option>
+                                    <option  value="3" @if(3 === (int)old('makerName')) selected @endif >Georgia</option>
+                                    <option  value="4" @if(4 === (int)old('makerName')) selected @endif >サンガリア</option>
+                                    <option  value="5" @if(5 === (int)old('makerName')) selected @endif >神戸屋</option>
                                 </select>
 
                             <th>

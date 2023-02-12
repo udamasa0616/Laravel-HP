@@ -51,22 +51,49 @@ class ProductController extends Controller
     // POST
 
 
-    public function productPostView(Request $request)
+    public function productPostView(ArticleRequest $request)
     {
-        // トランザクション開始
-        // DB::beginTransaction();
+        トランザクション開始
+        DB::beginTransaction();
+        
+        // 画像フォームでリクエストした画像情報を取得
+        $img = $request->file('img_path');
+        // 画像情報がセットされていれば、保存処理を実行
+        if (isset($img)) {
+            // storage > public > img配下に画像が保存される
+            $path = $img->store('img', 'public');
+            // store処理が実行できたらDBに保存処理を実行
+            if ($path) {
+                try {
+                    // 登録処理呼び出し
+                    $model = new Product();
+                    $model->registerArticle($request);
+                    DB::commit();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    return back();
+                }
+            }
+        }
+        return redirect('/main');
+    }
 
-        // try {
-        //     // 登録処理呼び出し
-        //     $model = new Product();
-        //     $model->registerArticle($request);
-        //     DB::commit();
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     return back();
-        // }
 
-        //  処理が完了したらregisterにリダイレクト
+
+    // public function productPostView(ArticleRequest $request)
+    // {
+    //     // 商品をデータベースに登録
+    //     // Product::create([
+    //     //     'product_name' => $request->product_name,
+    //     //     'company_id' => $request->makerName,
+    //     //     'price'   => $request->price,
+    //     //     'stock'   => $request->stock,
+    //     //     'comment' => $request->comment,
+    //     //     'img_path'    => $request->img_path
+    //     // ]);
+    // }
+}
+//  処理が完了したらregisterにリダイレクト
         //  return redirect(route('register'));
         // $post_data      = $request->except('img_path');
         // $image_file     = $request->file('img_path');
@@ -87,56 +114,37 @@ class ProductController extends Controller
 
         // return view('/register', compact('data'));
 
-        // ディレクトリ名
-        $photo = 'file_photos';
+        // // ディレクトリ名
+        // $photo = 'file_photos';
 
-        // アップロードされたファイル名を取得
-        $file_name = $request->file('img_path')->getClientOriginalName();
+        // // アップロードされたファイル名を取得
+        // $file_name = $request->file('img_path')->getClientOriginalName();
 
-        // file_photosディレクトリに画像を保存
-        $request->file('img_path')->store('public/' . $photo . $file_name);
+        // // file_photosディレクトリに画像を保存
+        // $request->file('img_path')->store('public/' . $photo . $file_name);
 
-        // ファイル情報をDBに保存
-        $image = new Product();
-        $image->product_name = $file_name;
-        $image->img_path = 'storage/' . $photo . '/' . $file_name;
-        $image->save();
+        // // ファイル情報をDBに保存
+        // $image = new Product();
+        // $image->product_name = $file_name;
+        // $image->img_path = 'storage/' . $photo . '/' . $file_name;
+        // $image->save();
 
-        // トランザクション開始
-        DB::beginTransaction();
 
-        try {
-            // 登録処理呼び出し
-            $model = new Product();
-            $model->registerArticle($request);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            return back();
-        }
+        // // トランザクション開始
+        // DB::beginTransaction();
+
+        // try {
+        //     // 登録処理呼び出し
+        //     $model = new Product();
+        //     $model->registerArticle($request);
+        //     DB::commit();
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        //     return back();
+        // }
 
 
         // $image->company_id = $file_name;
         // $image->price = $file_name;
         // $image->stock = $file_name;
         // $image->comment = $file_name;
-
-
-        return redirect('/register');
-    }
-
-
-
-    // public function productPostView(ArticleRequest $request)
-    // {
-    //     // 商品をデータベースに登録
-    //     // Product::create([
-    //     //     'product_name' => $request->product_name,
-    //     //     'company_id' => $request->makerName,
-    //     //     'price'   => $request->price,
-    //     //     'stock'   => $request->stock,
-    //     //     'comment' => $request->comment,
-    //     //     'img_path'    => $request->img_path
-    //     // ]);
-    // }
-}
