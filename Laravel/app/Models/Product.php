@@ -40,6 +40,7 @@ class Product extends Model
 
     public function registerArticle($request)
     {
+
         DB::table('Products')->insert([
             'product_name' => $request->product_name,
             'company_id'   => $request->makerName,

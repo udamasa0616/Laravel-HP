@@ -82,8 +82,6 @@ class ArticleRequest extends FormRequest
             'img_path.required'        => ':attributeを選択してください',
             "img_path.image" => "指定されたファイルが画像ではありません。",
             "img_path.mines" => "指定された拡張子（PNG/JPG/GIF）ではありません。",
-            "img_path.max" => "１Ｍを超えています。",
-            "img_path.dimensions" => "画像の比率は1:1で横は最大300pxです。",
         ];
     }
 }
