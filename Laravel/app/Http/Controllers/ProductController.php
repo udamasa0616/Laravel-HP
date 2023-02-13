@@ -67,6 +67,7 @@ class ProductController extends Controller
             if ($path) {
                 // ファイル情報をDBに保存
                 $image = new Product();
+
                 $image->img_path = 'storage/' . $photo . '/' . $file_name;
                 $image->save();
 
@@ -87,18 +88,18 @@ class ProductController extends Controller
         return redirect('/register');
     }
 }
-    // public function productPostView(ArticleRequest $request)
-    // {
-    //     // 商品をデータベースに登録
-    //     // Product::create([
-    //     //     'product_name' => $request->product_name,
-    //     //     'company_id' => $request->makerName,
-    //     //     'price'   => $request->price,
-    //     //     'stock'   => $request->stock,
-    //     //     'comment' => $request->comment,
-    //     //     'img_path'    => $request->img_path
-    //     // ]);
-    // }
+// public function productPostView(ArticleRequest $request)
+// {
+//     // 商品をデータベースに登録
+//     // Product::create([
+//     //     'product_name' => $request->product_name,
+//     //     'company_id' => $request->makerName,
+//     //     'price'   => $request->price,
+//     //     'stock'   => $request->stock,
+//     //     'comment' => $request->comment,
+//     //     'img_path'    => $request->img_path
+//     // ]);
+// }
 
 //  処理が完了したらregisterにリダイレクト
 //  return redirect(route('register'));
@@ -178,3 +179,20 @@ class ProductController extends Controller
 //         }
 //     }
 // }
+
+
+// // アップロードされたファイルの取得
+// $image = $request->file('img_path');
+// // ファイルの保存とパスの取得
+// $path = isset($image) ? $image->store('items', 'public') : '';
+
+// // データベースに登録
+// Product::create([
+//     'product_name' => $request->product_name,
+//     'company_id' => $request->company_id,
+//     'price' => $request->price,
+//     'stock' => $request->stock,
+//     'comment' => $request->comment,
+//     'img_path' => $path,
+// ]);
+// return redirect(route('/main'));
