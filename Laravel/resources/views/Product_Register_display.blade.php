@@ -30,7 +30,7 @@
                             <th>商品画像</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('register') }}" method="post" enctype='multipart/form-data'>
+                    <form action="{{ route('product_insert') }}" method="post" enctype='multipart/form-data'>
                         @csrf
 
                     <tbody>

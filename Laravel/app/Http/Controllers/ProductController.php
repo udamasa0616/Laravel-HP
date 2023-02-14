@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
 
@@ -51,24 +53,22 @@ class ProductController extends Controller
     // POST
 
 
-    public function productPostView(ArticleRequest $request)
+    public function productPost(Request $request)
     {
         // アップロードされたファイルの取得
         $image = $request->file('img_path');
         // ファイルの保存とパスの取得
-        $path = isset($image) ? $image->store('items', 'public') : '';
-
-        dd($request);
+        $path = $image->store('items', 'public');
         // データベースに登録
-        Product::insert([
+        \DB::table('products')->insert([
             'product_name' => $request->product_name,
-            'company_id' => $request->company_id,
+            'company_id' => $request->makerName,
             'price' => $request->price,
             'stock' => $request->stock,
             'comment' => $request->comment,
-            'img_path' => $path,
+            'img_path' => $path, //$request->img_path,
         ]);
-        return redirect(route('/main'));
+        return view('Product_Register_display');
     }
 }
 // public function productPostView(ArticleRequest $request)

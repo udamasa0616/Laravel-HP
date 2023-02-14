@@ -29,7 +29,8 @@ Route::get('/info', 'ProductController@productInfoView')->name('info');
 Route::get('/sales', 'ProductController@productSalesView')->name('sales');
 
 // 入力
+Route::get('/register', 'ProductController@productRegisterView')->name('register');
 // データ受け取り
-Route::post('/register', 'ProductController@productPostView')->name('register');
+Route::post('/register', 'ProductController@productPost')->name('product_insert');
 
 // 
