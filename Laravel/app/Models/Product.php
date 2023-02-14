@@ -14,7 +14,7 @@ class Product extends Model
     public function getAll()
     {
         $products = DB::table('Products') //DB名
-            // ->(クエリビルダ) 途中で内容の順番書き換え必要
+            // ->(クエリビルダ) 
             ->select(
                 'products.id as products_id',
                 'company_id',

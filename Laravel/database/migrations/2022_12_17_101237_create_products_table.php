@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id'); //ジュースのID
-            $table->integer('company_id'); //自販機ID
+            $table->string('company_id'); //自販機ID
             $table->string('product_name'); //名前
             $table->integer('price'); //価格
             $table->integer('stock'); //在庫数
