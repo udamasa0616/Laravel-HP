@@ -8,8 +8,6 @@ use App\Models\Product;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Support\Facades\Storage;
-
 class ProductController extends Controller
 {
 

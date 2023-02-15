@@ -64,7 +64,7 @@
                     @foreach ($result as $product)
                     <tr>
                         <th>{{ $product->products_id }}</th>
-                        <th><img src="{{asset('storage/'.$product->img_path)}}" height="300" width="300"></th>
+                        <th><img src="{{asset('storage/'.$product->img_path)}}" width="25%"></th>
                         <th>{{ $product->product_name }}</th>
                         <th>{{ $product->price }}</th>
                         <th>{{ $product->stock }}</th>
