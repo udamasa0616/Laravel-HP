@@ -11,12 +11,11 @@
     <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
 
     <!-- img -->
-    <img alt="ロゴ" src="{{ asset('/img/logo.png') }}">
-
 </head>
 
 <body>
     <header class="header">
+        <img alt="ロゴ" src="{{ asset('/img/logo.png') }}">
         <h1>商品一覧画面</h1>
     </header>
 
@@ -46,7 +45,6 @@
 
 
         <div class="list-from">
-            <!-- <button class="edit" type="button">更新</button> -->
             <label class="label-color" for="name">商品情報</label>
             <table>
                 <thead>
@@ -70,8 +68,13 @@
                         <th>{{ $product->stock }}</th>
                         <th>{{ $product->company_id }}</th>
                         <th>{{ $product->comment }}</th>
-                        <th><a href="{{ route('info') }}">編集</a></th>
-                        <th></th>
+                        <th><a href="{{ route('info')}}">詳細情報</a></th>
+                        <th>
+                            <form onsubmit="return confirm('本当に削除しますか？')" action="{{ route('delete', ['id'=>$product->products_id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" >削除</button>
+                            </form>
+                        </th>
                     </tr>
                     @endforeach
                 </tbody>
@@ -85,6 +88,7 @@
     <footer>
         <h2>自動販売機動作プログラム</h2>
     </footer>
+    <script src="../js/resource.js" ></script>
 </body>
 
 </html>

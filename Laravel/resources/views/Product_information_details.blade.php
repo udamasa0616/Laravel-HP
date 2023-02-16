@@ -48,7 +48,7 @@
 
         </div>
 
-        <button class="edit" type="button"><a href="{{ route('info') }}">編集</a></button>
+        <button class="edit" type="button"><a href="{{ route('edit') }}">編集</a></button>
         <button class="return-bottom" type="button"><a href="{{ route('main') }}">戻る</a></button>
 
 

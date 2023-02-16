@@ -49,4 +49,16 @@ class Product extends Model
             'img_path'     => $request->img_path
         ]);
     }
+
+    public function productDelete($id)
+    {
+        DB::table('Products')->delete([
+            'product_name' => $id->product_name,
+            'company_id'   => $id->makerName,
+            'price'        => $id->price,
+            'stock'        => $id->stock,
+            'comment'      => $id->comment,
+            'img_path'     => $id->img_path
+        ]);
+    }
 }

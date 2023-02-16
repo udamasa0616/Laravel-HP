@@ -17,20 +17,32 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 //URLの作成
+
+// ログイン画面
 Route::get('/home', 'HomeController@index')->name('home');
 
+// 一覧画面の表示
 Route::get('/main', 'ProductController@productMainView')->name('main');
 
-// Route::get('/product', 'ProductController@productView');
-
+// 商品情報詳細画面
 Route::get('/info', 'ProductController@productInfoView')->name('info');
 
+
+// 商品情報編集画面
+Route::get('/edit', 'ProductController@productEditView')->name('edit');
+
+// sale
 Route::get('/sales', 'ProductController@productSalesView')->name('sales');
 
-// 入力
+
+
+// 登録画面の表示
 Route::get('/register', 'ProductController@productRegisterView')->name('register');
-// データ受け取り
+// 登録処理 post
 Route::post('/register', 'ProductController@productPost')->name('product_insert');
 
-// 
+
+// 削除ボタン
+Route::post('/delete/{id}', 'ProductController@productDelete')->name('delete');
