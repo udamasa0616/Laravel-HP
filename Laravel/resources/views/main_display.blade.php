@@ -68,7 +68,7 @@
                         <th>{{ $product->stock }}</th>
                         <th>{{ $product->company_id }}</th>
                         <th>{{ $product->comment }}</th>
-                        <th><a href="{{ route('info')}}">詳細情報</a></th>
+                        <th><a href="{{ route('show', ['id'=>$product->products_id] )}}">詳細情報</a></th>
                         <th>
                             <form onsubmit="return confirm('本当に削除しますか？')" action="{{ route('delete', ['id'=>$product->products_id]) }}" method="POST">
                             @csrf

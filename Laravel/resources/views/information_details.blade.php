@@ -31,17 +31,17 @@
                         <th>在庫数</th>
                         <th>コメント</th>
                     </tr>
-            </thead>
+            </thead> 
             <tbody>
                 @foreach ($result as $product)
                 <tr>
-                    <th>{{ $product-> products.id}}</th>
-                    <th>{{ $product->img_path}}</th>
-                    <th>{{ $product->product_name}}</th>
-                    <th>{{ $product->price}}</th>
-                    <th>{{ $product->stock}}</th>
-                    <th>{{ $product->company_name}}</th>
-                    <th>{{ $product->comment}}</th>
+                    <td>{{ $product->products_id}}</td>
+                    <td>{{ $product->img_path}}</td>
+                    <td>{{ $product->product_name}}</td>
+                    <td>{{ $product->price}}</td>
+                    <td>{{ $product->stock}}</td>
+                    <td>{{ $product->company_name}}</td>
+                    <td>{!! nl2br(e($product->comment)) !!}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -50,9 +50,6 @@
 
         <button class="edit" type="button"><a href="{{ route('edit') }}">編集</a></button>
         <button class="return-bottom" type="button"><a href="{{ route('main') }}">戻る</a></button>
-
-
-
 
 
     </main>

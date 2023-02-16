@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         $products = new Product();
         $result   = $products->getAll();
-        return view('Product_information_details', ['result' => $result]);
+        return view('information_details', ['result' => $result]);
     }
 
     public function productEditView()
@@ -86,5 +86,25 @@ class ProductController extends Controller
         $products = new Product();
         $result = $products->getAll();
         return view('main_display', ['result' => $result]);
+    }
+
+    /**
+     * 詳細画面の表示
+     */
+    // public function productShow($id)
+    // {
+    //     $result = Product::find($id);
+
+    //     return view('information_details', compact('result'));
+    // }
+
+    public function productShow(Product $id)
+    {
+        $result = Product::find($id);
+
+        $result->get();
+        $products = new Product();
+        $result = $products->getAll();
+        return view('information_details', ['result' => $result]);
     }
 }
