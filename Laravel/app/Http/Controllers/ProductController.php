@@ -27,13 +27,6 @@ class ProductController extends Controller
         return view('information_details', ['result' => $result]);
     }
 
-    public function productEditView()
-    {
-        $products = new Product();
-        $result   = $products->getAll();
-        return view('Product_edit.blade', ['result' => $result]);
-    }
-
     public function productSalesView()
     {
         $products = new Product();
@@ -88,23 +81,51 @@ class ProductController extends Controller
         return view('main_display', ['result' => $result]);
     }
 
-    /**
-     * 詳細画面の表示
-     */
-    // public function productShow($id)
-    // {
-    //     $result = Product::find($id);
-
-    //     return view('information_details', compact('result'));
-    // }
-
-    public function productShow(Product $id)
+    // 詳細画面表示
+    public function productShow($id)
     {
         $result = Product::find($id);
+        return view('information_details', compact('result'));
+    }
 
-        $result->get();
+
+    /**
+     * 編集画面の表示
+     */
+    public function productEditView($id)
+    {
+        $result = Product::find($id);
+        return view('Product_edit', compact('result'));
+    }
+
+    // #greeting/editにアクセスされた場合
+    public function productUpdate(Request $request, $id)
+    {
+        $result = Product::find($id);
+        $result->fill();
+
         $products = new Product();
         $result = $products->getAll();
-        return view('information_details', ['result' => $result]);
+        return redirect()->route('Product_edit');
     }
+
+    /**
+     * 更新処理
+     */
+    // public function productUpdate(Request $request, $id)
+    // {
+    //     $result = Product::find($id);
+    //     $result->update();
+
+    //     return redirect()->route('book.index');
+    // }
+
+    /**
+     * 画面表示件データ一件取得用
+     */
+    // public function productUpdate($id)
+    // {
+    //     $update = $this->update->selectUserFindById($id);
+    //     return view('Product_edit', ['result' => $update]);
+    // }
 }

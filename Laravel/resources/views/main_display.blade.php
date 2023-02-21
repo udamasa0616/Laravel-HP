@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title>ララベル自動販売機</title>
     <!-- css -->
-    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/appp.css') }}">
     <!-- js -->
     <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
@@ -15,7 +14,6 @@
 
 <body>
     <header class="header">
-        <img alt="ロゴ" src="{{ asset('/img/logo.png') }}">
         <h1>商品一覧画面</h1>
     </header>
 
@@ -66,13 +64,13 @@
                         <th>{{ $product->product_name }}</th>
                         <th>{{ $product->price }}</th>
                         <th>{{ $product->stock }}</th>
-                        <th>{{ $product->company_id }}</th>
+                        <th>{{ $product->company_id}}</th>
                         <th>{{ $product->comment }}</th>
-                        <th><a href="{{ route('show', ['id'=>$product->products_id] )}}">詳細情報</a></th>
+                        <th><a href="{{ route('show', ['id'=>$product->products_id] )}}"><button>詳細情報</button></a></th>
                         <th>
                             <form onsubmit="return confirm('本当に削除しますか？')" action="{{ route('delete', ['id'=>$product->products_id]) }}" method="POST">
                             @csrf
-                            <button type="submit" >削除</button>
+                            <button type="submit">削除</button>
                             </form>
                         </th>
                     </tr>

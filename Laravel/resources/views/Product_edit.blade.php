@@ -39,24 +39,66 @@
                         
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($result as $product)
-                    <tr>
-                        <th>{{ $product->products_id }}</th>
-                        <th>{{ $product->product_name }}</th>
-                        <th>{{ $product->company_id }}</th>
-                        <th>{{ $product->price }}</th>
-                        <th>{{ $product->stock }}</th>
-                        <th>{{ $product->comment }}</th>
-                        <th><img src="{{asset('storage/'.$product->img_path)}}" width="25%"></th>
-                        <th><a href="{{  }}">更新</a></th>
-                        <th></th>
-                    </tr>
-                    @endforeach
 
-                    <button class="return-button" type="button"><a href="{{ route('info') }}">戻る</a></button>
-                </tbody>
-            </table>
+                
+                <form  method="post" action="{{ route('product_update', ['id'=>$product->products_id])}}" >
+                        @csrf
+                    <tbody>
+                        
+                        <tr>
+                            <th>
+                                <input value="{{ old($product->product_name ) }}" type="text" id="new-register" name="product_name" required minlength="1" maxlength="8" size="10"></th>
+                                    @if($errors->has('product_name'))
+                                        <p>{{ $errors->first('product_name') }}</p>
+                                @endif
+                            <th>
+                                <select value="{{ old($product->company_id ) }}" name="makerName">
+                                    <option  selected='disabled'>選択してください</option>
+                                    <option  value="EAST" @if(1 === (int)old('makerName')) selected @endif >EAST</option> 
+                                    <option  value="WEST" @if(2 === (int)old('makerName')) selected @endif >WEST</option>
+                                    <option  value="Group" @if(3 === (int)old('makerName')) selected @endif >Group</option>
+                                </select>
+
+                            <th>
+                                <input value="{{ old($product->price) }}" type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
+                                    @if($errors->has('price'))
+                                        <p>{{ $errors->first('price') }}</p>
+                                    @endif
+                            </th>
+
+                            <th>
+                                <input value="{{ old($product->stock) }}" type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
+                                    @if($errors->has('stock'))
+                                        <p>{{ $errors->first('stock') }}</p>
+                                    @endif
+                            </th>
+
+                            <th>
+                                <textarea name="comment" id="comment">{{ old('$product->comment') }}</textarea>
+                                    @if($errors->has('comment'))
+                                        <p>{{ $errors->first('comment') }}</p>
+                                    @endif
+                            </th>
+
+                            <th>
+                                <input name='img_path' value="{{ old('$product->img_path') }}" class="img_path" type="file">
+                                    @if($errors->has('img_path'))
+                                        <p>{{ $errors->first('img_path') }}</p>
+                                    @endif
+                            </th>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                    <input type="submit" class="makerName-search" id="" value="更新" >
+                    
+            </form>('PATCH')
+            
+
+        </div>
+
+        <button class="return-button" type="button"><a href="{{ route('show', ['id'=>$product->id]) }}">戻る</a></button>
         </div>
 
 

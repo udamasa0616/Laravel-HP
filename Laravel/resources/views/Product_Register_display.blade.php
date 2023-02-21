@@ -45,11 +45,9 @@
                                 
                                 <select name="makerName">
                                     <option  selected='disabled'>選択してください</option>
-                                    <option  value="1" @if(1 === (int)old('makerName')) selected @endif >コカ・コーラ</option>
-                                    <option  value="2" @if(2 === (int)old('makerName')) selected @endif >チェリオ</option>
-                                    <option  value="3" @if(3 === (int)old('makerName')) selected @endif >Georgia</option>
-                                    <option  value="4" @if(4 === (int)old('makerName')) selected @endif >サンガリア</option>
-                                    <option  value="5" @if(5 === (int)old('makerName')) selected @endif >神戸屋</option>
+                                    <option  value="EAST" @if(1 === (int)old('makerName')) selected @endif >EAST</option> 
+                                    <option  value="WEST" @if(2 === (int)old('makerName')) selected @endif >WEST</option>
+                                    <option  value="Group" @if(3 === (int)old('makerName')) selected @endif >Group</option>
                                 </select>
 
                             <th>

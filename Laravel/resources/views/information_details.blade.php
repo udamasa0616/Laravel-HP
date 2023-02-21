@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title>ララベル自動販売機</title>
     <!-- css -->
-    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/appp.css') }}">
 </head>
 
@@ -35,24 +34,28 @@
             <tbody>
                 @foreach ($result as $product)
                 <tr>
-                    <td>{{ $product->products_id}}</td>
-                    <td>{{ $product->img_path}}</td>
-                    <td>{{ $product->product_name}}</td>
-                    <td>{{ $product->price}}</td>
-                    <td>{{ $product->stock}}</td>
-                    <td>{{ $product->company_name}}</td>
+                    <td>{{ $product->id }}</td>
+                    <td><img src="{{asset('storage/'.$product->img_path) }}" width="25%"></td>
+                    <td>{{ $product->product_name }}</td>
+                    <td>{{ $product->company_id }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->stock }}</td>
                     <td>{!! nl2br(e($product->comment)) !!}</td>
                 </tr>
                 @endforeach
             </tbody>
-
+            </table>
         </div>
-
-        <button class="edit" type="button"><a href="{{ route('edit') }}">編集</a></button>
+        
+        <div>
+        <button class="edit" type="button"><a href="{{ route('product_edit', ['id'=>$product->id] ) }}">編集</a></button>
         <button class="return-bottom" type="button"><a href="{{ route('main') }}">戻る</a></button>
+        </div>
+        
 
 
     </main>
+
 
     <footer>
         <h2>自動販売機動作プログラム</h2>
