@@ -85,28 +85,28 @@ class ProductController extends Controller
     public function productShow($id)
     {
         $result = Product::find($id);
-        return view('information_details', compact('result'));
+        return view('information_details', ['result' => $result]);
     }
-
 
     /**
      * 編集画面の表示
      */
-    public function productEditView($id)
+    public function productEdit($id)
     {
         $result = Product::find($id);
-        return view('Product_edit', compact('result'));
+
+        return view('Product_edit', ['result' => $result]);
     }
 
-    // #greeting/editにアクセスされた場合
-    public function productUpdate(Request $request, $id)
+    /**
+     * 更新処理
+     */
+    public function update(Request $request, $id)
     {
         $result = Product::find($id);
-        $result->fill();
+        $updateBook = $this->result->updateBook($request, $result);
 
-        $products = new Product();
-        $result = $products->getAll();
-        return redirect()->route('Product_edit');
+        return view('Product_edit', ['result' => $result]);
     }
 
     /**

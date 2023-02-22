@@ -40,19 +40,15 @@ Route::post('/register', 'ProductController@productPost')->name('product_insert'
 // 削除ボタン
 Route::post('/delete/{id}', 'ProductController@productDelete')->name('delete');
 
-// 詳細画面表示（詳細ボタン）
+// 詳細画面表示（詳細ボタンも）
 // Route::post('/show/{id}', 'ProductController@productShow')->name('show');
 Route::get('/show/{id}', 'ProductController@productShow')->name('show');
 
+// 編集用画面
+Route::get('/edit/{id}', 'ProductController@productEdit')->name('edit');
 
-// 商品情報編集画面
-// Route::get('edit/{id}', 'ProductController@productEditView')->name('edit');
-
-// // 編集フォーム⇒UPDATE処理
-// Route::patch('update/{id}', 'ProductController@productUpdate')->name('update');
-// PATCHメソッド 編集フォームから値を送信するHTTPメソッドはpatchメソッド
-
+Route::post('/update/{id}', 'ProductController@productUpdate')->name('product_update');
 // 商品編集(更新ボタン)
 // Route::post('/update/{id}', 'ProductController@productUpdate')->name('update');
-Route::get('/edit/{id}', 'ProductController@productEditView')->name('product_edit');
-Route::post('update/{id}', 'ProductController@productUpdate')->name('product_update');
+// Route::get('/edit/{id}', 'ProductController@productEditView')->name('product_edit');
+// Route::post('/update/{id}', 'ProductController@productUpdate')->name('product_update');

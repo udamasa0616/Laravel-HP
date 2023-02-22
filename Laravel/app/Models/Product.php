@@ -75,6 +75,24 @@ class Product extends Model
             'comment'      => $request->comment,
             'img_path'     => $request->img_path
         ])->save();
-        return $result;
+        return redirect()->route('edit');
     }
+
+    //m_categoriesテーブルから::pluckでcategory_nameとidを抽出し、$categoriesに返す関数を作る
+    // public function getLists()
+    // {
+    //     $categories = Product::pluck('products_id', 'id');
+
+    //     return $categories;
+    // }
+    // //「カテゴリ(category)はたくさんの商品(products)をもつ」というリレーション関係を定義する
+    // public function products()
+    // {
+    //     return $this->hasMany(MProduct::class);
+    // }
+
+    // //「商品(products)はカテゴリ(category)に属する」というリレーション関係を定義する
+    // public function category()
+    // {
+    //     return $this->belongsTo(MCategory::class);
 }

@@ -32,23 +32,22 @@
                     </tr>
             </thead> 
             <tbody>
-                @foreach ($result as $product)
+                
                 <tr>
-                    <td>{{ $product->id }}</td>
-                    <td><img src="{{asset('storage/'.$product->img_path) }}" width="25%"></td>
-                    <td>{{ $product->product_name }}</td>
-                    <td>{{ $product->company_id }}</td>
-                    <td>{{ $product->price }}</td>
-                    <td>{{ $product->stock }}</td>
-                    <td>{!! nl2br(e($product->comment)) !!}</td>
+                    <td>{{ $result->product_id }}</td>
+                    <td><img src="{{asset('storage/'.$result->img_path) }}" width="25%"></td>
+                    <td>{{ $result->product_name }}</td>
+                    <td>{{ $result->company_id }}</td>
+                    <td>{{ $result->price }}</td>
+                    <td>{{ $result->stock }}</td>
+                    <td>{!! nl2br(e($result->comment)) !!}</td>
                 </tr>
-                @endforeach
             </tbody>
             </table>
         </div>
         
         <div>
-        <button class="edit" type="button"><a href="{{ route('product_edit', ['id'=>$product->id] ) }}">編集</a></button>
+        <button class="edit" type="button"><a href="{{ route('edit', ['id'=>$result->id] ) }}">編集</a></button> 
         <button class="return-bottom" type="button"><a href="{{ route('main') }}">戻る</a></button>
         </div>
         

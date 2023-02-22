@@ -40,19 +40,18 @@
                     </tr>
                 </thead>
 
-                
-                <form  method="post" action="{{ route('product_update', ['id'=>$product->products_id])}}" >
-                        @csrf
+                <form  method="post" action="{{ route('product_update', ['id'=>$result->id])}}" >
+                        @csrf @method('PUT')
                     <tbody>
                         
                         <tr>
                             <th>
-                                <input value="{{ old($product->product_name ) }}" type="text" id="new-register" name="product_name" required minlength="1" maxlength="8" size="10"></th>
+                                <input value="{{ old('product_name') }}" type="text" id="product_name" name="product_name" required minlength="1" maxlength="8" size="10"></th>
                                     @if($errors->has('product_name'))
                                         <p>{{ $errors->first('product_name') }}</p>
-                                @endif
+                                    @endif
                             <th>
-                                <select value="{{ old($product->company_id ) }}" name="makerName">
+                                <select value="{{ old('makerName' ) }}" name="makerName">
                                     <option  selected='disabled'>選択してください</option>
                                     <option  value="EAST" @if(1 === (int)old('makerName')) selected @endif >EAST</option> 
                                     <option  value="WEST" @if(2 === (int)old('makerName')) selected @endif >WEST</option>
@@ -60,28 +59,28 @@
                                 </select>
 
                             <th>
-                                <input value="{{ old($product->price) }}" type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
+                                <input value="{{ old('price') }}" type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
                                     @if($errors->has('price'))
                                         <p>{{ $errors->first('price') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <input value="{{ old($product->stock) }}" type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
+                                <input value="{{ old('stock') }}" type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
                                     @if($errors->has('stock'))
                                         <p>{{ $errors->first('stock') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <textarea name="comment" id="comment">{{ old('$product->comment') }}</textarea>
+                                <textarea name="comment" id="comment">{{ old('comment') }}</textarea>
                                     @if($errors->has('comment'))
                                         <p>{{ $errors->first('comment') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <input name='img_path' value="{{ old('$product->img_path') }}" class="img_path" type="file">
+                                <input name='img_path' value="{{ old('img_path') }}" class="img_path" type="file">
                                     @if($errors->has('img_path'))
                                         <p>{{ $errors->first('img_path') }}</p>
                                     @endif
@@ -93,12 +92,12 @@
 
                     <input type="submit" class="makerName-search" id="" value="更新" >
                     
-            </form>('PATCH')
+            </form>
             
 
         </div>
 
-        <button class="return-button" type="button"><a href="{{ route('show', ['id'=>$product->id]) }}">戻る</a></button>
+        <button class="return-button" type="button"><a href="{{ route('show', ['id'=>$result->id]) }}">戻る</a></button>
         </div>
 
 
