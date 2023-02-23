@@ -34,7 +34,7 @@
             <tbody>
                 
                 <tr>
-                    <td>{{ $result->product_id }}</td>
+                    <td>{{ $result->id }}</td>
                     <td><img src="{{asset('storage/'.$result->img_path) }}" width="25%"></td>
                     <td>{{ $result->product_name }}</td>
                     <td>{{ $result->company_id }}</td>

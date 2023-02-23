@@ -5,13 +5,10 @@
     <meta charset="utf-8">
     <title>ララベル自動販売機</title>
     <!-- css -->
-    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
+
     <link rel="stylesheet" href="{{ asset('/css/appp.css') }}">
     <!-- js -->
     <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
-
-    <!-- img -->
-    <img alt="ロゴ" src="{{ asset('/img/logo.png') }}">
 
 </head>
 
@@ -41,46 +38,51 @@
                 </thead>
 
                 <form  method="post" action="{{ route('product_update', ['id'=>$result->id])}}" >
-                        @csrf @method('PUT')
+                        @csrf 
+                        @method('PUT')
                     <tbody>
                         
                         <tr>
+
+                            <th>{{ $result->id }}</th>
+
                             <th>
-                                <input value="{{ old('product_name') }}" type="text" id="product_name" name="product_name" required minlength="1" maxlength="8" size="10"></th>
+                                <input value="{{ old('product_name', $result->product_name) }}" type="text" id="product_name" name="product_name" required minlength="1" maxlength="8" size="10"></th>
                                     @if($errors->has('product_name'))
                                         <p>{{ $errors->first('product_name') }}</p>
                                     @endif
                             <th>
-                                <select value="{{ old('makerName' ) }}" name="makerName">
-                                    <option  selected='disabled'>選択してください</option>
+                                <select value="{{ old('makerName', $result->makerName ) }}" name="makerName">
+                                    <option>選択してください</option>
                                     <option  value="EAST" @if(1 === (int)old('makerName')) selected @endif >EAST</option> 
                                     <option  value="WEST" @if(2 === (int)old('makerName')) selected @endif >WEST</option>
                                     <option  value="Group" @if(3 === (int)old('makerName')) selected @endif >Group</option>
                                 </select>
 
                             <th>
-                                <input value="{{ old('price') }}" type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
+                                <input value="{{ old('price', $result->price) }}" type="text" id="price" name="price" required minlength="1" maxlength="8" size="10">
                                     @if($errors->has('price'))
                                         <p>{{ $errors->first('price') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <input value="{{ old('stock') }}" type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
+                                <input value="{{ old('stock', $result->stock) }}" type="text" id="stock" name="stock" required minlength="1" maxlength="8" size="10">
                                     @if($errors->has('stock'))
                                         <p>{{ $errors->first('stock') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <textarea name="comment" id="comment">{{ old('comment') }}</textarea>
+                                <textarea name="comment" id="comment">{{ old('comment', $result->comment) }}</textarea>
                                     @if($errors->has('comment'))
                                         <p>{{ $errors->first('comment') }}</p>
                                     @endif
                             </th>
 
                             <th>
-                                <input name='img_path' value="{{ old('img_path') }}" class="img_path" type="file">
+                                <img src="{{asset('storage/'.$result->img_path)}}" width="25%">
+                                <input name='img_path' value="{{ old('img_path', $result->img_path) }}) }}" class="img_path" type="file">
                                     @if($errors->has('img_path'))
                                         <p>{{ $errors->first('img_path') }}</p>
                                     @endif

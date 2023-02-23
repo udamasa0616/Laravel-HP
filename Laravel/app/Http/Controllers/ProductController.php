@@ -104,10 +104,27 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $result = Product::find($id);
-        $updateBook = $this->result->updateBook($request, $result);
-
+        $result->fill($request->input('result'));
+        $result->save();
         return view('Product_edit', ['result' => $result]);
     }
+
+    // 検索画面
+    public function index(Request $request)
+    {
+        $keyword = $request->input('product');
+
+        $query = Product::query();
+        if (!empty($keyword)) {
+            $query->where('product_name', 'LIKE', "%{$keyword}%");
+        }
+
+        $result = $query->get();
+
+        return view('index', ['result' => $result]);
+    }
+
+
 
     /**
      * 更新処理

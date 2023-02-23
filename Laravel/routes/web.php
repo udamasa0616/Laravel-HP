@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // 一覧画面の表示
 Route::get('/main', 'ProductController@productMainView')->name('main');
+// 検索画面
+Route::get('/search', 'ProductController@productMainView')->name('posts.index');
 
 // sale
 Route::get('/sales', 'ProductController@productSalesView')->name('sales');
@@ -46,8 +48,10 @@ Route::get('/show/{id}', 'ProductController@productShow')->name('show');
 
 // 編集用画面
 Route::get('/edit/{id}', 'ProductController@productEdit')->name('edit');
-
+// 更新ボタン
 Route::post('/update/{id}', 'ProductController@productUpdate')->name('product_update');
+
+
 // 商品編集(更新ボタン)
 // Route::post('/update/{id}', 'ProductController@productUpdate')->name('update');
 // Route::get('/edit/{id}', 'ProductController@productEditView')->name('product_edit');

@@ -19,27 +19,12 @@
 
     <main>
         @csrf
-        <div class="list-from">
-            <label class="label-color" for="name">検索フォーム</label>
-
-            <div class="contents">
-                <label class="label-color" for="name">商品名</label>
-                <input type="text" id="new-register" name="new-register" required minlength="1" maxlength="8" size="10">
-
-                <label class="label-color" for="name">メーカー名</label>
-                <select name="makerName">
-                    @foreach ($result as $product)
-                    <option value="{{ $product-> products_id }}">{{ $product->product_name }}</option>
-                    @endforeach
-                </select>
-
-                <button class="search" type="button">検索</button>
-            </div>
+        <div>
+            <form action="{{ route('posts.index') }}" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
         </div>
-
-        <button class="new-register" type="button">
-            <a href="{{ route('register') }}">新規</a>
-        </button>
 
 
         <div class="list-from">

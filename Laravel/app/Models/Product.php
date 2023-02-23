@@ -75,7 +75,7 @@ class Product extends Model
             'comment'      => $request->comment,
             'img_path'     => $request->img_path
         ])->save();
-        return redirect()->route('edit');
+        return $result;
     }
 
     //m_categoriesテーブルから::pluckでcategory_nameとidを抽出し、$categoriesに返す関数を作る
